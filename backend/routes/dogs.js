@@ -1,5 +1,5 @@
 const express = require("express");
-
+const Dog = require("../models/dogModel");
 const router = express.Router();
 
 // Get ALL dogs
@@ -13,8 +13,14 @@ router.get("/:id", (req, res) => {
 });
 
 // Post a dog
-router.post("/", (req, res) => {
-  res.json({ mssg: "Post a new dog" });
+router.post("/", async (req, res) => {
+  const { name, breed, owner, size, description } = req.body;
+  try {
+    const dog = await Dog.create({ name, breed, owner, size, description });
+    res.status(200).json(dog);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
 });
 
 // Delete a dog
