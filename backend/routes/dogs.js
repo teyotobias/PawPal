@@ -1,36 +1,26 @@
 const express = require("express");
-const Dog = require("../models/dogModel");
+const {
+  createDog,
+  getDogs,
+  getDog,
+  deleteDog,
+  updateDog,
+} = require("../controllers/dogController");
 const router = express.Router();
 
 // Get ALL dogs
-router.get("/", (req, res) => {
-  res.json({ mssg: "Get all Dogs" });
-});
+router.get("/", getDogs);
 
 // Get a single dog
-router.get("/:id", (req, res) => {
-  res.json({ mssg: "Get single Dog" });
-});
+router.get("/:id", getDog);
 
 // Post a dog
-router.post("/", async (req, res) => {
-  const { name, breed, owner, size, description } = req.body;
-  try {
-    const dog = await Dog.create({ name, breed, owner, size, description });
-    res.status(200).json(dog);
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
-});
+router.post("/", createDog);
 
 // Delete a dog
-router.delete("/:id", (req, res) => {
-  res.json({ mssg: "Delete a dog" });
-});
+router.delete("/:id", deleteDog);
 
 // Update a dog
-router.patch("/:id", (req, res) => {
-  res.json({ mssg: "Update a dog" });
-});
+router.patch("/:id", updateDog);
 
 module.exports = router;
