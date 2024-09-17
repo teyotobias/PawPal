@@ -26,7 +26,7 @@ const dogSchema = new Schema(
     },
     size: {
       type: String,
-      enum: ["SM", "MD", "LG"],
+      enum: ["SM", "MD", "LG", "XL", "XS"],
       required: true,
     },
     description: {

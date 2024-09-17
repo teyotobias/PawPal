@@ -60,9 +60,11 @@ export default function DogForm() {
       <label>Size:</label>
       <select onChange={(e) => setSize(e.target.value)} value={size}>
         <option value="">Select Size</option> {/* Default placeholder */}
+        <option value="XS">Extra Small (XS)</option>
         <option value="SM">Small (SM)</option>
         <option value="MD">Medium (MD)</option>
         <option value="LG">Large (LG)</option>
+        <option value="XL">Extra Large (XL)</option>
       </select>
       <label>Description:</label>
       <input

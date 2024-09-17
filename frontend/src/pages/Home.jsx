@@ -21,7 +21,10 @@ const Home = () => {
   return (
     <div className="home">
       <div className="dogs">
-        {dogs && dogs.map((dog) => <DogDetails key={dog._id} dog={dog} />)}
+        {dogs &&
+          dogs.map((dog) => (
+            <DogDetails key={dog._id} dog={dog} dogs={dogs} setDogs={setDogs} />
+          ))}
       </div>
       <DogForm />
     </div>
