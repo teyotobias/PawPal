@@ -45,7 +45,9 @@ export default function DogForm({ setAllDogs, setFilteredDogs, allDogs }) {
 
   return (
     <form className="create" onSubmit={handleSubmit}>
-      <h3>Add a New Dog</h3>
+      <div className="dogFormHeader">
+        <h3>Add a New Dog</h3>
+      </div>
       <label>Name:</label>
       <input
         type="text"
@@ -87,7 +89,9 @@ export default function DogForm({ setAllDogs, setFilteredDogs, allDogs }) {
         value={description}
         className={emptyFields.includes("description") ? "error" : ""}
       />
-      <button>Add Dog</button>
+      <div className="dogFormButton">
+        <button>Add Dog</button>
+      </div>
       {error && <div className="error">{error}</div>}
     </form>
   );
