@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function DogForm() {
+export default function DogForm({ setAllDogs, setFilteredDogs, allDogs }) {
   const [name, setName] = useState("");
   const [breed, setBreed] = useState("");
   const [owner, setOwner] = useState("");
@@ -36,6 +36,10 @@ export default function DogForm() {
       setEmptyFields([]);
       setError(null);
       console.log("new dog added", json);
+
+      // Update allDogs and filteredDogs with the new dog
+      setAllDogs((prevDogs) => [json, ...prevDogs]); // Add new dog to allDogs
+      setFilteredDogs((prevDogs) => [json, ...prevDogs]); // Add new dog to filteredDogs
     }
   };
 
@@ -69,7 +73,7 @@ export default function DogForm() {
         value={size}
         className={emptyFields.includes("size") ? "error" : ""}
       >
-        <option value="">Select Size</option> {/* Default placeholder */}
+        <option value="">Select Size</option>
         <option value="XS">Extra Small (XS)</option>
         <option value="SM">Small (SM)</option>
         <option value="MD">Medium (MD)</option>

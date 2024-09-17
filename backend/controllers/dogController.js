@@ -80,16 +80,21 @@ const updateDog = async (req, res) => {
   if (!mongoose.Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: "No such dog" });
   }
+
+  // Ensure the updated document is returned
   const dog = await Dog.findOneAndUpdate(
     { _id: id },
     {
       ...req.body,
-    }
+    },
+    { new: true } // This ensures that the updated dog is returned
   );
+
   if (!dog) {
     return res.status(400).json({ error: "No such dog" });
   }
-  res.status(200).json(dog);
+
+  res.status(200).json(dog); // Now, this returns the updated dog
 };
 module.exports = {
   getDogs,
