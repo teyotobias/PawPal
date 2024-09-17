@@ -27,6 +27,29 @@ const getDog = async (req, res) => {
 // create a dog
 const createDog = async (req, res) => {
   const { name, breed, owner, size, description } = req.body;
+
+  let emptyFields = [];
+
+  if (!name) {
+    emptyFields.push("name");
+  }
+  if (!breed) {
+    emptyFields.push("breed");
+  }
+  if (!owner) {
+    emptyFields.push("owner");
+  }
+  if (!size) {
+    emptyFields.push("size");
+  }
+  if (!description) {
+    emptyFields.push("description");
+  }
+  if (emptyFields.length > 0) {
+    return res
+      .status(400)
+      .json({ error: "Please fill in all fields", emptyFields });
+  }
   try {
     const dog = await Dog.create({ name, breed, owner, size, description });
     res.status(200).json(dog);
