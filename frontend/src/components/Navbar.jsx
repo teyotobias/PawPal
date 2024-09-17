@@ -7,6 +7,9 @@ export default function Navbar() {
         <Link to="/">
           <h1>PawPal</h1>
         </Link>
+        <Link to="/gallery">
+          <h4>Gallery</h4>
+        </Link>
       </div>
     </header>
   );

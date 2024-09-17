@@ -22,6 +22,9 @@ header .container {
   align-items: center;
   justify-content: space-between;
 }
+header .container h4 {
+  margin-right: 15vw;
+}
 header a {
   color: #333;
   text-decoration: none;
@@ -41,11 +44,11 @@ header a {
   column-gap: 50px;
 }
 .search-container {
-  grid-column: 1 / -1; /* Span the full width of the grid */
+  grid-column: 1 / -1;
   display: flex;
-  justify-content: center; /* Center the search bar */
+  justify-content: center;
   align-items: center;
-  margin-bottom: 20px; /* Add spacing below the search bar */
+  margin-bottom: 20px;
   gap: 10px;
 }
 
@@ -98,7 +101,7 @@ header a {
 .dog-details .edit {
   position: absolute;
   top: 20px;
-  right: 65px; /* Move edit icon slightly to the left */
+  right: 65px;
   cursor: pointer;
   background: #f1f1f1;
   padding: 6px;
@@ -109,7 +112,7 @@ header a {
 .dog-details .delete {
   position: absolute;
   top: 20px;
-  right: 20px; /* Keep delete icon on the far right */
+  right: 20px;
   cursor: pointer;
   background: #f1f1f1;
   padding: 6px;
