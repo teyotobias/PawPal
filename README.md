@@ -28,3 +28,59 @@ A sleek, easy-to-use web app for managing your favorite dogs. Search, sort, add,
 ![ExpressJS](https://img.shields.io/badge/Express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
 ![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Node.js](https://img.shields.io/badge/Node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+
+```markdown
+## Installation Instructions
+
+### Step 1: Clone the Repository
+Clone this repository to your local machine using the following command:
+```bash
+git clone https://github.com/teyotobias/PawPal.git
+```
+Navigate to the project directory:
+```bash
+cd PawPal
+```
+
+### Step 2: Install Backend Dependencies
+Navigate to the backend directory:
+```bash
+cd backend
+```
+Install the required dependencies:
+```bash
+npm install
+```
+
+### Step 3: Install Frontend Dependencies
+Navigate to the frontend directory:
+```bash
+cd ../frontend
+```
+Install the required dependencies:
+```bash
+npm install
+```
+
+### Step 4: Set Up Environment Variables
+Create a `.env` file in the backend directory and add the following environment variables:
+```
+PORT=4000
+MONGO_URI='your-mongodb-connection-string'
+```
+
+### Step 5: Run the Application
+To run the backend server, navigate back to the backend directory and run:
+```bash
+nodemon server.js
+```
+To run the frontend server, open a new terminal, navigate to the frontend directory, and run:
+```bash
+npm run dev
+```
+This will start the Vite development server for the frontend.
+
+### Step 6: Access the Application
+Open your web browser and navigate to `http://localhost:4000` to access the PawPal application.
+```
+
