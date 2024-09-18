@@ -1,0 +1,35 @@
+- README.md
+- backend
+  - .env
+  - .gitignore
+  - controllers
+    - dogController.js
+  - models
+    - dogModel.js
+  - package-lock.json
+  - package.json
+  - routes
+    - dogs.js
+  - server.js
+- frontend
+  - .gitignore
+  - README.md
+  - index.html
+  - package-lock.json
+  - package.json
+  - public
+  - src
+    - App.jsx
+    - assets
+    - components
+      - DogDetails.jsx
+      - DogForm.jsx
+      - Navbar.jsx
+    - index.css
+    - main.jsx
+    - pages
+      - DogGallery
+        - DogGallery.css
+        - DogGallery.jsx
+      - Home.jsx
+  - vite.config.js
