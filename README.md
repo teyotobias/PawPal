@@ -29,7 +29,7 @@ A sleek, easy-to-use web app for managing your favorite dogs. Search, sort, add,
 ![React](https://img.shields.io/badge/React-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 ![Node.js](https://img.shields.io/badge/Node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 
-```markdown
+
 ## Installation Instructions
 
 ### Step 1: Clone the Repository
