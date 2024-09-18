@@ -5,7 +5,7 @@ export default function Navbar() {
     <header>
       <div className="container">
         <Link to="/">
-          <h1>PawPal</h1>
+          <h1 className="appTitle">PawPal</h1>
         </Link>
         <Link to="/gallery">
           <h4>Gallery</h4>

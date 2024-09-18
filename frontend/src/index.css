@@ -164,3 +164,41 @@ input.error,
 select.error {
   border: 1px solid var(--error);
 }
+
+.sort-container {
+  display: flex;
+  align-items: center;
+}
+
+.sort-label {
+  margin-left: 10vw;
+  margin-right: 1vw;
+  font-size: 2vmin;
+}
+
+/* Sort dropdown styling */
+.sort-dropdown {
+  margin: 0;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: white;
+  font-size: 2vmin;
+  cursor: pointer;
+  appearance: none; /* Removes the default styling on some browsers */
+  -webkit-appearance: none; /* Removes the default styling on Safari */
+  -moz-appearance: none; /* Removes the default styling on Firefox */
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxMCIgaGVpZ2h0PSIxMCIgdmlld0JveD0iMCAwIDEwIDEwIj48cGF0aCBkPSJNNSA2TDEgMmguOWwzLjUgM2wzLjUtM0g5eiIvPjwvc3ZnPg=="); /* Small down arrow icon */
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 12px;
+}
+
+.sort-dropdown:hover {
+  border-color: #888;
+}
+
+.sort-dropdown:focus {
+  outline: none;
+  border-color: #888;
+}

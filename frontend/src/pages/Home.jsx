@@ -6,6 +6,7 @@ const Home = () => {
   const [allDogs, setAllDogs] = useState([]); // State to hold all dogs
   const [filteredDogs, setFilteredDogs] = useState([]); // State to hold filtered dogs
   const [searchTerm, setSearchTerm] = useState("");
+  const [sortCriteria, setSortCriteria] = useState(""); // State to track sorting criteria
 
   useEffect(() => {
     const fetchDogs = async () => {
@@ -26,11 +27,29 @@ const Home = () => {
     setSearchTerm(search);
     if (search) {
       const filtered = allDogs.filter((dog) =>
-        dog.breed.toLowerCase().includes(search)
+        dog.name.toLowerCase().includes(search)
       );
       setFilteredDogs(filtered);
     } else {
       setFilteredDogs(allDogs); // Reset to show all dogs if search is cleared
+    }
+  };
+  // sort dogs
+  const handleSort = (e) => {
+    const criteria = e.target.value;
+    setSortCriteria(criteria); // Update sorting criteria
+
+    if (criteria === "default") {
+      // If "Default" is selected, return to the original order (allDogs)
+      setFilteredDogs(allDogs);
+    } else {
+      let sortedDogs = [...filteredDogs];
+      if (criteria === "name") {
+        sortedDogs.sort((a, b) => a.name.localeCompare(b.name));
+      } else if (criteria === "breed") {
+        sortedDogs.sort((a, b) => a.breed.localeCompare(b.breed));
+      }
+      setFilteredDogs(sortedDogs);
     }
   };
 
@@ -40,11 +59,26 @@ const Home = () => {
       <div className="search-container">
         <input
           type="text"
-          placeholder="Search by breed"
+          placeholder="Search by name"
           value={searchTerm}
           onChange={handleSearch} // Filtering happens as user types
           className="search-bar"
         />
+        <div className="sort-container">
+          <label htmlFor="sort" className="sort-label">
+            Sort by:
+          </label>
+          <select
+            id="sort"
+            className="sort-dropdown"
+            value={sortCriteria}
+            onChange={handleSort}
+          >
+            <option value="default">Default</option>
+            <option value="name">Name</option>
+            <option value="breed">Breed</option>
+          </select>
+        </div>
       </div>
 
       {/* Display filtered dogs */}
