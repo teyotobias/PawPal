@@ -39,7 +39,16 @@ export default function DogForm({ setAllDogs, setFilteredDogs, allDogs }) {
 
       // Update allDogs and filteredDogs with the new dog
       setAllDogs((prevDogs) => [json, ...prevDogs]); // Add new dog to allDogs
-      setFilteredDogs((prevDogs) => [json, ...prevDogs]); // Add new dog to filteredDogs
+      // Reapply the search filter to filteredDogs
+      if (searchTerm) {
+        const filtered = [json, ...allDogs].filter((dog) =>
+          dog.name.toLowerCase().includes(searchTerm.toLowerCase())
+        );
+        setFilteredDogs(filtered);
+      } else {
+        // If no search term, just add the new dog to filteredDogs
+        setFilteredDogs((prevDogs) => [json, ...prevDogs]);
+      }
     }
   };
 
