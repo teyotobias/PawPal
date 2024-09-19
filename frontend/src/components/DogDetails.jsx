@@ -120,12 +120,22 @@ export default function DogDetails({
           </p>
         </div>
       )}
-      <span onClick={handleEditClick} className="material-icons edit">
+      {/* <span onClick={handleEditClick} className="material-icons edit">
         edit
       </span>
       <span onClick={handleClick} className="material-icons delete">
         delete
-      </span>
+      </span> */}
+      {!isEditing && (
+        <span onClick={handleEditClick} className="material-icons edit">
+          edit
+        </span>
+      )}
+      {!isEditing && (
+        <span onClick={handleClick} className="material-icons delete">
+          delete
+        </span>
+      )}
     </div>
   );
 }

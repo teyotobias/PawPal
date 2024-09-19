@@ -87,14 +87,14 @@ const updateDog = async (req, res) => {
     {
       ...req.body,
     },
-    { new: true } // This ensures that the updated dog is returned
+    { new: true } // NEEDED to ensure it returns the updateddog
   );
 
   if (!dog) {
     return res.status(400).json({ error: "No such dog" });
   }
 
-  res.status(200).json(dog); // Now, this returns the updated dog
+  res.status(200).json(dog);
 };
 module.exports = {
   getDogs,
