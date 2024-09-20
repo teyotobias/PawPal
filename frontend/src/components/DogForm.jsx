@@ -13,6 +13,31 @@ export default function DogForm({ setAllDogs, setFilteredDogs, allDogs }) {
     e.preventDefault();
 
     const dog = { name, breed, owner, size, description };
+    let newErrors = [];
+
+    // client side validations
+    // Validations
+    if (name.length < 2 || name.length > 20) {
+      newErrors.push("name");
+    }
+    if (breed.length < 2 || breed.length > 20) {
+      newErrors.push("breed");
+    }
+    if (owner.trim() === "") {
+      newErrors.push("owner");
+    }
+    if (!["XS", "SM", "MD", "LG", "XL"].includes(size)) {
+      newErrors.push("size");
+    }
+    if (description.length < 2 || description.length > 500) {
+      newErrors.push("description");
+    }
+
+    if (newErrors.length > 0) {
+      setEmptyFields(newErrors);
+      setError("Please correct the highlighted fields.");
+      return; // Stop the submission
+    }
 
     const response = await fetch("/api/dogs", {
       method: "POST",
@@ -39,16 +64,7 @@ export default function DogForm({ setAllDogs, setFilteredDogs, allDogs }) {
 
       // Update allDogs and filteredDogs with the new dog
       setAllDogs((prevDogs) => [json, ...prevDogs]); // Add new dog to allDogs
-      // Reapply the search filter to filteredDogs
-      if (searchTerm) {
-        const filtered = [json, ...allDogs].filter((dog) =>
-          dog.name.toLowerCase().includes(searchTerm.toLowerCase())
-        );
-        setFilteredDogs(filtered);
-      } else {
-        // If no search term, just add the new dog to filteredDogs
-        setFilteredDogs((prevDogs) => [json, ...prevDogs]);
-      }
+      setFilteredDogs((prevDogs) => [json, ...prevDogs]); // Add new dog to filteredDogs
     }
   };
 
