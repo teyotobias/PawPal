@@ -87,7 +87,7 @@ const updateDog = async (req, res) => {
     {
       ...req.body,
     },
-    { new: true } // NEEDED to ensure it returns the updateddog
+    { new: true, runValidators: true } // NEEDED to ensure it returns the updateddog
   );
 
   if (!dog) {

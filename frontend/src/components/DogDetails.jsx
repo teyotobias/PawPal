@@ -17,6 +17,10 @@ export default function DogDetails({
   const [editSize, setEditSize] = useState(dog.size);
   const [editDescription, setEditDescription] = useState(dog.description);
 
+  // state for error handling
+  const [error, setError] = useState(null);
+  const [emptyFields, setEmptyFields] = useState([]);
+
   // Handle delete
   const handleClick = async () => {
     const response = await fetch("/api/dogs/" + dog._id, {
@@ -37,6 +41,31 @@ export default function DogDetails({
 
   // Handle save functionality
   const handleSaveClick = async () => {
+    let newErrors = [];
+
+    // Client-side validation rules (same as in DogForm)
+    if (editName.length < 2 || editName.length > 20) {
+      newErrors.push("name");
+    }
+    if (editBreed.length < 2 || editBreed.length > 20) {
+      newErrors.push("breed");
+    }
+    if (editOwner.trim() === "") {
+      newErrors.push("owner");
+    }
+    if (!["XS", "SM", "MD", "LG", "XL"].includes(editSize)) {
+      newErrors.push("size");
+    }
+    if (editDescription.length < 2 || editDescription.length > 500) {
+      newErrors.push("description");
+    }
+
+    // Validation has failed
+    if (newErrors.length > 0) {
+      setEmptyFields(newErrors);
+      setError("Please correct the highlighted fields.");
+      return; // Stop Submission
+    }
     const updatedDog = {
       name: editName,
       breed: editBreed,
@@ -63,6 +92,10 @@ export default function DogDetails({
         prevDogs.map((d) => (d._id === dog._id ? json : d))
       );
       setIsEditing(false);
+      setEmptyFields([]);
+      setError(null);
+    } else {
+      setError("Failed to update the dog. Please try again.");
     }
   };
 
@@ -74,26 +107,36 @@ export default function DogDetails({
             type="text"
             value={editName}
             onChange={(e) => setEditName(e.target.value)}
+            className={emptyFields.includes("name") ? "error" : ""}
           />
           <input
             type="text"
             value={editBreed}
             onChange={(e) => setEditBreed(e.target.value)}
+            className={emptyFields.includes("breed") ? "error" : ""}
           />
           <input
             type="text"
             value={editOwner}
             onChange={(e) => setEditOwner(e.target.value)}
+            className={emptyFields.includes("owner") ? "error" : ""}
           />
-          <input
-            type="text"
+          <select
             value={editSize}
             onChange={(e) => setEditSize(e.target.value)}
-          />
+            className={emptyFields.includes("size") ? "error" : ""}
+          >
+            <option value="XS">Extra Small (XS)</option>
+            <option value="SM">Small (SM)</option>
+            <option value="MD">Medium (MD)</option>
+            <option value="LG">Large (LG)</option>
+            <option value="XL">Extra Large (XL)</option>
+          </select>
           <input
             type="text"
             value={editDescription}
             onChange={(e) => setEditDescription(e.target.value)}
+            className={emptyFields.includes("description") ? "error" : ""}
           />
           <button onClick={handleSaveClick} className="search-button">
             Save
@@ -120,12 +163,7 @@ export default function DogDetails({
           </p>
         </div>
       )}
-      {/* <span onClick={handleEditClick} className="material-icons edit">
-        edit
-      </span>
-      <span onClick={handleClick} className="material-icons delete">
-        delete
-      </span> */}
+      {error && <div className="error">{error}</div>}
       {!isEditing && (
         <span onClick={handleEditClick} className="material-icons edit">
           edit
