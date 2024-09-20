@@ -15,7 +15,7 @@ header {
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 3px 2px -2px #8b4513;
+  /* box-shadow: 0 3px 2px -2px #8b4513; */
 }
 header .container {
   max-width: 1400px;
